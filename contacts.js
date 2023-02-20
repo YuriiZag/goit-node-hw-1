@@ -36,11 +36,17 @@ async function removeContact(contactId) {
 
 async function addContact(name, email, phone) {
   const data = await getData();
+  const newContact = {
+    id: Date.now().toString(),
+    name: name,
+    email: email,
+    phone: phone,
+  };
   const upgradedData = [
-    ...data,
-    { id: Date.now().toString(), name: name, email: email, phone: phone },
+    ...data, newContact
   ];
   writeData(upgradedData);
+  return console.log(newContact)
 }
 
 module.exports = { listContacts, addContact, removeContact, getContactById};
